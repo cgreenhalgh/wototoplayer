@@ -21,19 +21,26 @@
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+		<link rel="stylesheet" href="vendor/foundation/css/foundation.min.css">
+		<!-- <link rel="stylesheet" href="css/app.css"> -->
+		<script src="vendor/modernizr/modernizr.js"></script>
+        <title>WototoPlayer</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
+    	<div class="row">
+    		<div class="columns large-12">
+    			<label for="home-url-text">Please enter the web app URL:</label>
+	      		<input type="text" name="url" id="home-url-text" placeholder="enter app url"/>
+    	  		<input type="button" name="load" value="Load" id="home-url-button" disabled/>
+    		</div>
+		</div>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="vendor/foundation/js/foundation.min.js"></script>
+		<script type="text/javascript" src="vendor/underscore/underscore.js"></script>
+		<script type="text/javascript" src="vendor/backbone/backbone.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
