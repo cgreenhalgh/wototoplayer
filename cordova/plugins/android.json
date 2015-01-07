@@ -1,0 +1,26 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Aestheticodes\"><param name=\"android-package\" value=\"org.opensharingtoolkit.cordova.aestheticodes.Scan\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "org.opensharingtoolkit.cordova.aestheticodes": {
+            "PACKAGE_NAME": "org.opensharingtoolkit.player"
+        }
+    },
+    "dependent_plugins": {}
+}

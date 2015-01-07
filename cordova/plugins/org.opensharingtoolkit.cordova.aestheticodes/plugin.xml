@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="org.opensharingtoolkit.cordova.aestheticodes"
+    version="0.1.0">
+    <engines>
+        <engine name="cordova" version="3.6.4" />
+    </engines>
+    <name>Aestheticode Scanner</name>
+    <description>Allow app to scan using Aestheticodes / ArtCodes machine-readable codes</description>
+    <author>Chris Greenhalgh, The University of Nottingham</author>
+    <license>BSD 2-Clause</license>
+    <js-module src="www/aestheticodes.js" name="Aestheticodes">
+        <clobbers target="aestheticodes" />
+    </js-module>
+    <platform name="android">
+         <source-file src="android/src/Scan.java"
+                target-dir="src/org/opensharingtoolkit/cordova/aestheticodes" />
+         <config-file target="res/xml/config.xml" parent="/*">
+             <feature name="Aestheticodes">
+                 <param name="android-package" value="org.opensharingtoolkit.cordova.aestheticodes.Scan" />
+            </feature>
+        </config-file>
+    </platform>
+</plugin>
