@@ -28,6 +28,7 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         $('#home-url-button').on('click', function(ev) { app.onload() });
+        $('#home-scan-button').on('click', function(ev) { app.onscan() });
     },
     // deviceready Event Handler
     //
@@ -36,11 +37,33 @@ var app = {
     onDeviceReady: function() {
     	console.log("deviceready");
     	$('#home-url-button').prop('disabled', false);
+    	$('#home-scan-button').prop('disabled', false);
     },
     onload: function() {
     	var url = $('#home-url-text').val();
     	console.log("load "+url);
     	window.open(url);
+    },
+    onscan: function() {
+    	aestheticodes.scan(JSON.stringify({
+    		"op":"temp",
+    		"id": "org.opensharingtoolkit.aestheticodes.dynamic",
+    		"version": 1,
+    		"name": "Aestheticodes/Wototo",
+    		"minRegions": 5,
+    		"maxRegions": 5,
+    		"maxEmptyRegions": 0,
+    		"maxRegionValue": 6,
+    		"validationRegions": 2,
+    		"validationRegionValue": 1,
+    		"checksumModulo": 3,
+    		"thresholdBehaviour": "temporalTile",
+    		"markers": [
+    			{
+    				"code": "1:1:1:1:2",
+    				"action": "http://www.opensharingtoolkit.org"
+    			}
+    		]
+       	}));
     }
-    //    aestheticodes.scan();
 };

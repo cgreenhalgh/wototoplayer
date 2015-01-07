@@ -34,6 +34,7 @@
     			<label for="home-url-text">Please enter the web app URL:</label>
 	      		<input type="text" name="url" id="home-url-text" placeholder="enter app url"/>
     	  		<input type="button" name="load" value="Load" id="home-url-button" disabled/>
+    	  		<input type="button" name="scan" value="Scan" id="home-scan-button" disabled/>
     		</div>
 		</div>
         <script type="text/javascript" src="cordova.js"></script>
@@ -43,6 +44,7 @@
 		<script type="text/javascript" src="vendor/backbone/backbone.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
+	        $(document).foundation();
             app.initialize();
         </script>
     </body>
