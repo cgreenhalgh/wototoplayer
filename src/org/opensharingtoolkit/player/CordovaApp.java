@@ -19,7 +19,11 @@
 
 package org.opensharingtoolkit.player;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+
 import org.apache.cordova.*;
 
 public class CordovaApp extends CordovaActivity
@@ -30,6 +34,20 @@ public class CordovaApp extends CordovaActivity
         super.onCreate(savedInstanceState);
         super.init();
         // Set by <content src="index.html" /> in config.xml
-        loadUrl(launchUrl);
+        if (!checkIntent(getIntent()))
+            loadUrl(launchUrl);
     }
+	@Override
+	protected void onNewIntent(Intent intent) {
+		checkIntent(intent);
+	}
+	private boolean checkIntent(Intent intent) {
+		if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+			Uri uri = intent.getData();
+			Log.d(TAG,"Load from intent "+uri);
+			loadUrl(uri.toString());
+			return true;
+		}
+		return false;
+	}
 }

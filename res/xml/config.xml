@@ -19,4 +19,7 @@
     <feature name="Aestheticodes">
         <param name="android-package" value="org.opensharingtoolkit.cordova.aestheticodes.Scan" />
     </feature>
+    <feature name="BarcodeScanner">
+        <param name="android-package" value="com.phonegap.plugins.barcodescanner.BarcodeScanner" />
+    </feature>
 </widget>

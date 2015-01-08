@@ -6,12 +6,20 @@ module.exports = [
         "clobbers": [
             "aestheticodes"
         ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.barcodescanner/www/barcodescanner.js",
+        "id": "com.phonegap.plugins.barcodescanner.BarcodeScanner",
+        "clobbers": [
+            "cordova.plugins.barcodeScanner"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "org.opensharingtoolkit.cordova.aestheticodes": "0.1.0"
+    "org.opensharingtoolkit.cordova.aestheticodes": "0.1.0",
+    "com.phonegap.plugins.barcodescanner": "2.0.1"
 }
 // BOTTOM OF METADATA
 });

@@ -29,6 +29,7 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         $('#home-url-button').on('click', function(ev) { app.onload() });
         $('#home-scan-button').on('click', function(ev) { app.onscan() });
+        $('#home-scanqr-button').on('click', function(ev) { app.onscanqr() });
     },
     // deviceready Event Handler
     //
@@ -38,6 +39,7 @@ var app = {
     	console.log("deviceready");
     	$('#home-url-button').prop('disabled', false);
     	$('#home-scan-button').prop('disabled', false);
+    	$('#home-scanqr-button').prop('disabled', false);
     },
     onload: function() {
     	var url = $('#home-url-text').val();
@@ -65,5 +67,15 @@ var app = {
     			}
     		]
        	}));
+    },
+    onscanqr: function() {
+    	cordova.plugins.barcodeScanner.scan(function(result) {
+    		if (result.cancelled)
+    			alert("cancelled");
+    		else
+    			alert("success: "+result.text+" "+result.format);
+    	}, function(error) {
+    		alert("error: "+error);
+    	});
     }
 };
