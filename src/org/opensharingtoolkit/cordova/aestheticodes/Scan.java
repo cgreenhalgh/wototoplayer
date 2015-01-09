@@ -26,6 +26,7 @@ public class Scan extends CordovaPlugin {
     }
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
+        Log.d(TAG,"action "+action+" with "+args.length()+" arguments");
         if ("scan".equals(action)) {
         	final String experience = args.getString(0);
             Log.d(TAG,"Scan "+experience);

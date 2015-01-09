@@ -19,3 +19,9 @@ E.g. install [com.phonegap.plugins.barcodescanner](http://plugins.cordova.io/#/p
 plugman install --platform android --project wototoplayer --plugin com.phonegap.plugins.barcodescanner
 ```
 
+## Loading apps
+
+Current registered for custom URI scheme `x-wototo`. Should open automatically on browse to app link with that scheme.
+
+Also registered for custom mime type `application/x-wototo`. My phone downloads this and then opens it from `content://downloads/...`, which is then rejected by [CordovaBridge.java](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaBridge.java) with an error of `gap_init called from restricted origin` because there is a check that external origin starts with "http". Might work if the initial page just did a client-side redirect to the web version.
+

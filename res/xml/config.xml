@@ -9,6 +9,7 @@
     </author>
     <access origin="http://*/*" />
     <access origin="https://*/*" />
+    <access origin="content://downloads/*" />
     <access launch-external="yes" origin="tel:*" />
     <access launch-external="yes" origin="geo:*" />
     <access launch-external="yes" origin="mailto:*" />
