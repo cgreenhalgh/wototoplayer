@@ -66,7 +66,14 @@ var app = {
     				"action": "http://www.opensharingtoolkit.org"
     			}
     		]
-       	}));
+       	}), function(result) {
+    		if (result.cancelled)
+    			alert("cancelled");
+    		else
+    			alert("success: "+result);
+    	}, function(error) {
+    		alert("error: "+error);
+    	});
     },
     onscanqr: function() {
     	cordova.plugins.barcodeScanner.scan(function(result) {

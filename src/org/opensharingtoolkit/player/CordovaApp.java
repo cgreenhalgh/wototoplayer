@@ -23,9 +23,13 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -33,9 +37,13 @@ import android.os.Bundle;
 import android.util.Log;
 
 import org.apache.cordova.*;
+import org.opensharingtoolkit.cordova.aestheticodes.Scan;
 
 public class CordovaApp extends CordovaActivity
 {
+	public static String TAG = "wototoplayer";
+	private boolean newActivity = true;
+	private String wototoUrl = null;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -47,8 +55,59 @@ public class CordovaApp extends CordovaActivity
     }
 	@Override
 	protected void onNewIntent(Intent intent) {
+		setIntent(intent);
 		checkIntent(intent);
 	}
+
+	@Override
+	protected void onResume() {
+		newActivity = false;
+		super.onResume();
+	}
+	public static String encodeURIComponent(String s) {
+		String result = null;
+		try {
+			result = URLEncoder.encode(s, "UTF-8")
+					.replaceAll("\\+", "%20")
+					.replaceAll("\\%21", "!")
+					.replaceAll("\\%27", "'")
+					.replaceAll("\\%28", "(")
+					.replaceAll("\\%29", ")")
+					.replaceAll("\\%7E", "~");
+		}
+		// This exception should never occur.
+		catch (UnsupportedEncodingException e) {
+			result = s;
+		}
+		return result;
+	}  
+	/* (non-Javadoc)
+	 * @see org.apache.cordova.CordovaActivity#onActivityResult(int, int, android.content.Intent)
+	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+			Intent intent) {
+		Log.d(TAG, "onActivityResult "+requestCode+" "+resultCode+" "+(intent!=null ? "marker="+intent.getStringExtra("marker") : ""));
+		// word-around aestheticode scan if process killed/restarted
+		// onActivityResult seems to arrive after loadUrl and before Resume
+		if (newActivity && requestCode==Scan.AESTHETICODES_SCAN_REQUEST_CODE && resultCode==Activity.RESULT_OK && intent!=null) {
+			String marker = intent.getStringExtra(Scan.EXTRA_MARKER);
+			if (wototoUrl!=null) {
+				String url = wototoUrl;
+				int ix = url.indexOf("#");
+				if (ix>=0)
+					url = url.substring(0,ix);
+				url = url+"#unlock/artcode/"+encodeURIComponent(marker);
+				Log.i(TAG, "scan return for new activity: "+marker+" -> "+url);
+				loadUrl(url);
+				return;
+			} else
+				Log.d(TAG, "scan return ("+marker+") for new activity without wototoUrl");
+		}
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, intent);
+	}
+
 	static int MAX_LENGTH = 10000;
 	private boolean checkIntent(Intent intent) {
 		if (Intent.ACTION_VIEW.equals(intent.getAction())) {
@@ -60,7 +119,8 @@ public class CordovaApp extends CordovaActivity
 					url = url+"&wototo=1";
 				else
 					url = url+"?wototo=1";
-				Log.d(TAG,"Load from rewritted wototo intent "+url);
+				Log.d(TAG,"Load from rewritten wototo intent "+url);
+				wototoUrl = url;
 				loadUrl(url);
 			}
 			else if ("content".equals(uri.getScheme())) {
@@ -79,6 +139,7 @@ public class CordovaApp extends CordovaActivity
 						if (m.find()) {
 							String url = m.group(1).replace("&amp;", "&");
 							Log.d(TAG,"Load from redirect "+url);
+							wototoUrl = url;
 							loadUrl(url);
 							return true;
 						}

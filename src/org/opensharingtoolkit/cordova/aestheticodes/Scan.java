@@ -18,7 +18,8 @@ import android.util.Log;
 public class Scan extends CordovaPlugin {
     public static final String TAG = "aestheticodes-scan";
     private CallbackContext callbackContext;
-    
+    public static final int AESTHETICODES_SCAN_REQUEST_CODE = 0x4a54de87;
+    public static final String EXTRA_MARKER = "marker";
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -34,7 +35,7 @@ public class Scan extends CordovaPlugin {
         	i.putExtra("experience", experience);
         	// copied this tactic, but seems dubious...
         	this.callbackContext = callbackContext;
-            cordova.startActivityForResult(this, i, 0);
+            cordova.startActivityForResult(this, i, AESTHETICODES_SCAN_REQUEST_CODE);
             return true;
         }
         return false;  // Returning false results in a "MethodNotFound" error.
@@ -42,9 +43,11 @@ public class Scan extends CordovaPlugin {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         // Result received okay
         if (resultCode == Activity.RESULT_OK) {
-        	this.callbackContext.success();
+        	Log.d(TAG,"Scan result "+resultCode+" "+intent.getStringExtra(EXTRA_MARKER));
+        	this.callbackContext.success(intent.getStringExtra(EXTRA_MARKER));
         } else {
-        	this.callbackContext.error("error return from activity");
+        	Log.d(TAG,"Scan result cancelled");
+        	this.callbackContext.error("error return from activity - cancelled");
         }
     }
 }
