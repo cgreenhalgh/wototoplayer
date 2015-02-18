@@ -18,6 +18,12 @@ E.g. install [com.phonegap.plugins.barcodescanner](http://plugins.cordova.io/#/p
 ```
 plugman install --platform android --project wototoplayer --plugin com.phonegap.plugins.barcodescanner
 plugman install --platform android --project wototoplayer --plugin org.apache.cordova.geolocation
+plugman install --platform android --project wototoplayer --plugin org.apache.cordova.vibration
+plugman install --platform android --project wototoplayer --plugin org.apache.cordova.network-information
+plugman install --platform android --project wototoplayer --plugin org.apache.cordova.device-orientation
+plugman install --platform android --project wototoplayer --plugin org.apache.cordova.device-motion
+plugman install --platform android --project wototoplayer --plugin org.apache.cordova.device
+plugman install --platform android --project wototoplayer --plugin org.apache.cordova.battery-status
 ```
 
 Note: git archive doesn't include complete plugin stuff, so may need to repeat the above when adding new plugin(s).
