@@ -19,7 +19,8 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "org.opensharingtoolkit.cordova.aestheticodes": "0.1.0",
-    "com.phonegap.plugins.barcodescanner": "2.0.1"
+    "com.phonegap.plugins.barcodescanner": "2.0.1",
+    "org.apache.cordova.geolocation": "0.3.12"
 }
 // BOTTOM OF METADATA
 });

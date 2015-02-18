@@ -17,7 +17,10 @@ May also need cordova android tools from [dist](https://www.apache.org/dist/cord
 E.g. install [com.phonegap.plugins.barcodescanner](http://plugins.cordova.io/#/package/com.phonegap.plugins.barcodescanner) from [repo](https://github.com/wildabeast/BarcodeScanner.git)
 ```
 plugman install --platform android --project wototoplayer --plugin com.phonegap.plugins.barcodescanner
+plugman install --platform android --project wototoplayer --plugin org.apache.cordova.geolocation
 ```
+
+Note: git archive doesn't include complete plugin stuff, so may need to repeat the above when adding new plugin(s).
 
 ## Loading apps
 

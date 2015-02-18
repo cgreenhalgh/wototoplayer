@@ -48,6 +48,16 @@
                             "xml": "<uses-feature android:name=\"android.hardware.camera\" android:required=\"false\" />",
                             "count": 1
                         }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        }
                     ]
                 }
             },
@@ -540,6 +550,9 @@
             "PACKAGE_NAME": "org.opensharingtoolkit.player"
         },
         "com.phonegap.plugins.barcodescanner": {
+            "PACKAGE_NAME": "org.opensharingtoolkit.player"
+        },
+        "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "org.opensharingtoolkit.player"
         }
     },

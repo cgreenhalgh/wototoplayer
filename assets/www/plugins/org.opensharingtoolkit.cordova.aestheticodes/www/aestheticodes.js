@@ -18,3 +18,4 @@ scan: function (experience, success, error) {
 module.exports = aestheticodes;
 
 });
+

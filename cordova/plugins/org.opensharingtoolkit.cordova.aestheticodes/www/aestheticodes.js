@@ -1,4 +1,4 @@
-cordova.define("org.opensharingtoolkit.cordova.aestheticodes.Aestheticodes", function(require, exports, module) { // Aestheticodes scan javascript API
+// Aestheticodes scan javascript API
 //
 // Chris Greenhalgh, The University of nottingham
 //
@@ -17,4 +17,3 @@ scan: function (experience, success, error) {
 }
 module.exports = aestheticodes;
 
-});
