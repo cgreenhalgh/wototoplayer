@@ -49,6 +49,9 @@ public class CordovaApp extends CordovaActivity
     {
         super.onCreate(savedInstanceState);
         super.init();
+        // turn off app cache for now
+        //Log.d(TAG,"disable app cache");
+        //appView.getSettings().setAppCacheEnabled(false);
         // Set by <content src="index.html" /> in config.xml
         if (!checkIntent(getIntent()))
             loadUrl(launchUrl);

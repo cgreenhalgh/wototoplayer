@@ -116,6 +116,7 @@ public class ArtcodeRunner extends Activity {
 				finish();
 				return;
 			}
+			action = action.replace("$marker", marker);
 			Log.d(TAG,"Marker "+marker+" => "+action);
 			Intent i = new Intent(Intent.ACTION_VIEW);
 			i.addCategory(Intent.CATEGORY_BROWSABLE);
